@@ -9,7 +9,7 @@ import random
 
 from fake_useragent import UserAgent, FakeUserAgentError, VERSION
 
-IF_UPDATE_FAKE_UA = False
+IF_UPDATE_FAKE_UA = True
 
 
 class FakeUA:
@@ -27,7 +27,7 @@ class FakeUA:
         try:
             if if_update_fake_ua:
                 self.fake_ua = UserAgent(path='fake_useragent%s.json' % VERSION)
-                self.fake_ua.update()
+                # self.fake_ua.update()
             else:
                 raise FakeUserAgentError()
         except FakeUserAgentError:
@@ -65,7 +65,9 @@ class FakeUA:
         except KeyError:
             raise AttributeError(r"Object does'n has attribute '%s'" % item)
 
-
+print(VERSION)
 print('正在初始化随机UA模块，若此步消耗了大量时间，请将FakeUA.py中的IF_UPDATE_FAKE_UA修改为False(默认值)')
 fake_ua = FakeUA(IF_UPDATE_FAKE_UA)
 print('随机UA模块初始化完成')
+ua = UserAgent(path='fake_useragent0.1.11.json')
+print(ua.random)
